@@ -8,10 +8,10 @@ export default withAuth(
 		// console.log(req.nextauth.token);
 	},
 	{
-		// callbacks: {
-		// 	authorized: ({ token }) => token !== null,
-		// },
-		secret: process.env.SECRET,
+		callbacks: {
+			authorized: ({ token }) => !!token,
+		},
+		secret: "bobbytoobadonanorms",
 		pages: {
 			signIn: "/sign-in",
 		},
