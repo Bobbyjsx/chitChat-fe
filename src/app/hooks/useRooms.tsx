@@ -20,6 +20,7 @@ export const useRooms = (uuid: string) => {
 	} = useQuery<GetRooms[]>({
 		queryKey: [fetchRoomPath],
 		queryFn: () => get(fetchRoomPath),
+		refetchInterval: 3000,
 	});
     
     const { mutateAsync: addUserToRoom } = useMutation<

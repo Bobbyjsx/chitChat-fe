@@ -1,7 +1,7 @@
 "use client";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useApiCache } from "./useApiCache";
-import { post } from "../lib/api";
+import { get, post } from "../lib/api";
 
 type SendMessage = {
 	content: string;
@@ -16,8 +16,15 @@ export type GetMessages = {
 };
 
 export const useMessage = (roomId: string) => {
-	const { data: getMessages, isLoading: fetchingMessages, refresh } =
-		useApiCache<GetMessages[]>(`/messages/${roomId}`);
+	const {
+		data: getMessages,
+		isLoading: fetchingMessages,
+		refetch: refresh,
+	} = useQuery<GetMessages[]>({
+		queryKey: [`/messages/${roomId}`],
+		queryFn: () => get(`/messages/${roomId}`),
+		refetchInterval: 2000,
+	});
 
 	const {
 		mutateAsync: sendMessage,

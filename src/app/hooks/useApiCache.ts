@@ -23,7 +23,7 @@ export const useApiCache = <T>(
 	const { data, error, isLoading } = useQuery({
 		queryKey: [path],
 		queryFn: fetcher,
-		refetchInterval: 3000,
+		
 	});
 
 	const refresh = useCallback(() => {

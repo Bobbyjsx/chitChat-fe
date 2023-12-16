@@ -5,6 +5,7 @@ import { Input } from "./common/Input";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { PaperAirplaneIcon } from "@heroicons/react/20/solid";
 import { useMessage } from "../hooks/useMessage";
+import { useUser } from "../hooks/useUser";
 
 interface MessageProps {
 	message: string;
@@ -18,14 +19,14 @@ interface FormInput {
 }
 
 export const MessageInput = ({ roomId }: { roomId: string }) => {
-	const {  sendMessage } = useMessage(roomId);
+	const { sendMessage } = useMessage(roomId);
+	const { session } = useUser();
 
 	const {
 		register,
 		formState: { isSubmitting },
 		handleSubmit,
 		reset,
-		watch,
 	} = useForm<FormInput>({
 		defaultValues: {
 			input: "",
@@ -58,12 +59,14 @@ export const MessageInput = ({ roomId }: { roomId: string }) => {
 
 	let timerId: NodeJS.Timeout;
 
-    const onSubmit: SubmitHandler<FormInput> = async (data) => {
-        
+	const onSubmit: SubmitHandler<FormInput> = async (data) => {
 		try {
-            await sendMessage({content: data.input, sender_id:'5'})
+			await sendMessage({
+				content: data.input,
+				sender_id: `${session?.user.id}`,
+			});
 			reset();
-			setTyping(false); 
+			setTyping(false);
 		} catch (err) {
 			throw err;
 		}
@@ -75,7 +78,7 @@ export const MessageInput = ({ roomId }: { roomId: string }) => {
 	}, []);
 
 	return (
-		<div className='w-full bg-slate-500'>
+		<div className="w-full bg-slate-500">
 			{/* <Typing typing={typing} /> */}
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<Input

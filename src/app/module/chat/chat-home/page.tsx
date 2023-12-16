@@ -9,10 +9,10 @@ const ChatHomeModule = () => {
   
 	return (
 		<main>
-			<section className="flex flex-col w-full h-full">
+			<section className="flex flex-col w-full h-screen bg-slate-800 overflow-y-scroll gap-y-3">
 				{getRooms?.map((room, idx) => (
 					<Link
-						className="w-full h-16 bg-zinc-700 text-indigo-500 pl-44 items-center flex"
+						className="w-full h-16 bg-zinc-700 text-indigo-500 sm:pl-44 sm:justify-start justify-center items-center flex border-zinc-200 border-b-[0.5px] rounded-md"
 						href={`/chats/${room.id}`}
 						key={idx}>
 						{room?.name}

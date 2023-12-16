@@ -48,7 +48,7 @@ const SignIn = () => {
 			if (callbackUrl) {
 				router.replace(callbackUrl);
 			} else {
-				router.replace("/");
+				router.replace("/chats");
 			}
 		}
 	}, [session, pathname, router, callbackUrl]);
@@ -66,8 +66,6 @@ const SignIn = () => {
 					? router.replace(callbackUrl as string)
 					: await router.push("/chats");
 			}
-			router.push("/chats");
-			console.log('auth fail');
 			
 		} catch (err) {
 			toast.error("Error signing in");

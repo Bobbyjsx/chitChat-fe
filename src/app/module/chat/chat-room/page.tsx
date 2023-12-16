@@ -6,7 +6,7 @@ import { useParams } from "next/navigation";
 
 const ChatRoomModule = () => {
 	const params = useParams();
-	const { getMessages, refresh } = useMessage(`${params?.roomid}`);
+	const { getMessages } = useMessage(`${params?.roomid}`);
 	const { session } = useUser();
 	const uuid = session?.user.id;
 
@@ -24,10 +24,10 @@ const ChatRoomModule = () => {
 					<div
 						key={idx}
 						className={classNames("flex items-center", {
-							"justify-end":
-								message.senderId.toString() === uuid,
-							"justify-start":
-								message.senderId.toString() !== uuid,
+							"justify-end self-end":
+								`${message.senderId}` === uuid,
+							"justify-start self-start":
+								`${message.senderId}` !== uuid,
 						})}>
 						<div
 							className={classNames(
@@ -42,11 +42,12 @@ const ChatRoomModule = () => {
 						</div>
 					</div>
 				))}
-				<button
+				{/* <button
 					onClick={() => refresh()}
-					className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+					className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+				>
 					Refresh
-				</button>
+				</button> */}
 			</div>
 		</div>
 	);
