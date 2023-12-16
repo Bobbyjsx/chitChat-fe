@@ -1,4 +1,4 @@
-import LandingModule from "@/app/components/module/landing/page";
+import LandingModule from "@/app/module/landing/page";
 
 const LandingPage = () => {
 	return (

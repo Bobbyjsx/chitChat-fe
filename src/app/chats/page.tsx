@@ -1,4 +1,4 @@
-import ChatHomeModule from "@/app/components/module/chat/chat-home/page";
+import ChatHomeModule from "@/app/module/chat/chat-home/page";
 
 const ChatHome = () => {
 	return <ChatHomeModule />;

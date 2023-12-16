@@ -1,12 +1,10 @@
 "use client";
 import React, { ChangeEvent, useState, useEffect } from "react";
-import Typing from "../../Typing";
-import { Input } from "../../common/Input";
+import Typing from "../../components/Typing";
+import { Input } from "../../components/common/Input";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { PaperAirplaneIcon } from "@heroicons/react/20/solid";
-import AuthBtn from "../../common/AuthBtn";
-import { get } from "@/app/lib/api";
-import { SignInResponse } from "@/app/api/auth/[...nextauth]/route";
+import AuthBtn from "../../components/common/AuthBtn";
 import { useAuth } from "@/app/hooks/useAuth";
 
 interface MessageProps {
@@ -26,7 +24,6 @@ const HomeModule = () => {
 		formState: { isSubmitting },
 		handleSubmit,
 		reset,
-		watch,
 	} = useForm<FormInput>({
 		defaultValues: {
 			input: "",
