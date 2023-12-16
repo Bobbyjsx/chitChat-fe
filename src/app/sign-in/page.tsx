@@ -56,7 +56,7 @@ const SignIn = () => {
 	const onSubmit: SubmitHandler<SignInValues> = async (values) => {
 		try {
 			const { ok, error }: any = await signIn("credentials", {
-				redirect: false,
+				redirect: true,
 				...values,
 			});
 			console.log(ok, error);
@@ -66,23 +66,23 @@ const SignIn = () => {
 					? router.replace(callbackUrl as string)
 					: await router.push("/chats");
 			}
-			toast.error(error);
-		} catch (error) {
+			router.push("/chats");
+		} catch (err) {
 			toast.error("Error signing in");
-			console.error(error);
+			console.error(err);
 		}
 	};
 
 	return (
 		<div className="w-full items-center justify-center">
 			<div className="sm:mx-auto sm:w-full sm:max-w-md">
-				<picture>
+				{/* <picture>
 					<img
 						alt="SokoSQ Logo"
 						className="mx-auto h-10 w-auto sm:hidden"
 						src="/images/sm-logo.svg"
 					/>
-				</picture>
+				</picture> */}
 				<h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
 					Sign in to your account
 				</h2>
