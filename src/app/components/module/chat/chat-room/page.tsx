@@ -2,9 +2,11 @@
 import { useMessage } from "@/app/hooks/useMessage";
 import { useUser } from "@/app/hooks/useUser";
 import classNames from "classnames";
+import { useParams } from "next/navigation";
 
-export const ChatRoomModule = ({ roomId }: { roomId: string }) => {
-	const { getMessages, refresh } = useMessage(roomId);
+const ChatRoomModule: React.FC = () => {
+	const params = useParams();
+	const { getMessages, refresh } = useMessage(`${params?.roomid}`);
 	const { session } = useUser();
 	const uuid = session?.user.id;
 
@@ -49,3 +51,5 @@ export const ChatRoomModule = ({ roomId }: { roomId: string }) => {
 		</div>
 	);
 };
+
+export default ChatRoomModule;

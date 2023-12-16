@@ -1,8 +1,8 @@
-import Hero from "../../components/landing/Hero";
-import ConnectAndCommunicate from "../../components/landing/ConnectAndCommunicate";
-import ExperiencePower from "../../components/landing/ExperiencePower";
-import JoinTheConversation from "../../components/landing/JoinTheConversation";
-import ExploreChatEnviroment from "../../components/landing/ExploreChatEnviroment";
+import Hero from "../../landing/Hero";
+import ConnectAndCommunicate from "../../landing/ConnectAndCommunicate";
+import ExperiencePower from "../../landing/ExperiencePower";
+import JoinTheConversation from "../../landing/JoinTheConversation";
+import ExploreChatEnviroment from "../../landing/ExploreChatEnviroment";
 
 const LandingModule = () => {
 	return (

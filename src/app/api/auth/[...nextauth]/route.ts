@@ -9,7 +9,7 @@ export interface SignInResponse {
 	password: string;
 }
 
-export const authOptions: NextAuthOptions = {
+const authOptions: NextAuthOptions = {
 	callbacks: {
 		async jwt({ token, account, user }) {
 			if (account) {

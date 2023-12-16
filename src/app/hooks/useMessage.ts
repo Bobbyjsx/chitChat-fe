@@ -7,7 +7,7 @@ type SendMessage = {
 	content: string;
 	sender_id: string;
 };
-type GetMessages = {
+export type GetMessages = {
 	content: string;
 	id: string;
 	roomId: string;

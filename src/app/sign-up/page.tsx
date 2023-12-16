@@ -2,10 +2,10 @@
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Anchor } from "../../components/common/Anchor";
-import { Button } from "../../components/common/Button";
-import { Input } from "../../components/common/Input";
-import { PasswordInput } from "../../components/common/PasswordInput";
+import { Anchor } from "../components/common/Anchor";
+import { Button } from "../components/common/Button";
+import { Input } from "../components/common/Input";
+import { PasswordInput } from "../components/common/PasswordInput";
 import { useRouter } from "next/navigation";
 import { SignUpPayload, useAuth } from "@/app/hooks/useAuth";
 import { FetchError } from "@/app/lib/api";

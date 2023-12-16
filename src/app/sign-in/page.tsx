@@ -3,10 +3,10 @@ import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Anchor } from "../../components/common/Anchor";
-import { Button } from "../../components/common/Button";
-import { Input } from "../../components/common/Input";
-import { PasswordInput } from "../../components/common/PasswordInput";
+import { Anchor } from "../components/common/Anchor";
+import { Button } from "../components/common/Button";
+import { Input } from "../components/common/Input";
+import { PasswordInput } from "../components/common/PasswordInput";
 import {
 	useRouter,
 	useSearchParams,
