@@ -66,6 +66,8 @@ const SignIn = () => {
 					? router.replace(callbackUrl as string)
 					: await router.push("/chats");
 			}
+			router.push("/chats");
+			console.log('auth fail');
 			
 		} catch (err) {
 			toast.error("Error signing in");
