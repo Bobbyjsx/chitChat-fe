@@ -1,6 +1,5 @@
 "use client";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { useApiCache } from "./useApiCache";
 import { get, post } from "../lib/api";
 
 type SendMessage = {
@@ -13,13 +12,16 @@ export type GetMessages = {
 	roomId: string;
 	senderId: string;
 	time: string;
+	username: string;
 };
 
 export const useMessage = (roomId: string) => {
+    const recallTime = roomId ? 2000 : false;
 	const {
 		data: getMessages,
 		isLoading: fetchingMessages,
 		refetch: refresh,
+		isError,
 	} = useQuery<GetMessages[]>({
 		queryKey: [`/messages/${roomId}`],
 		queryFn: () => get(`/messages/${roomId}`),
@@ -43,6 +45,7 @@ export const useMessage = (roomId: string) => {
 		sent,
 		notSent,
 		refresh,
+        isError
 	};
 };
 

@@ -1,17 +1,19 @@
 "use client";
+import toast from "react-hot-toast";
+import { FetchError } from "../lib/api";
 import { useApiCache } from "./useApiCache";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
-export type UserProps= {
-    uuid: string;
-    email: string;
-    userName: string;
-    rooms: any[];
-    sentMessages: any[];
-}
-export const useUser =  () => {
+export type UserProps = {
+	uuid: string;
+	email: string;
+	userName: string;
+	rooms: any[];
+	sentMessages: any[];
+};
+export const useUser = () => {
 	const { data: session } = useSession();
-	const email =  session?.user?.email;
+	const email = session?.user?.email;
 
 	const {
 		data: userData,
@@ -19,6 +21,17 @@ export const useUser =  () => {
 		isLoading: userIsLoading,
 	} = useApiCache<UserProps>(`/user/${email}`);
 
+	if (session && error instanceof FetchError) {
+		toast.error(error.message);
+		if (error.status === 404) {
+			signOut();
+			toast.success("You have been signed out")
+			if (window !== undefined) {
+				window.location.href = "/sign-in"
+			}
+		}
+	}
+	
 	return {
 		session,
 		userData,

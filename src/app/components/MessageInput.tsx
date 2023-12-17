@@ -6,6 +6,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { PaperAirplaneIcon } from "@heroicons/react/20/solid";
 import { useMessage } from "../hooks/useMessage";
 import { useUser } from "../hooks/useUser";
+import toast from "react-hot-toast";
 
 interface MessageProps {
 	message: string;
@@ -65,9 +66,11 @@ export const MessageInput = ({ roomId }: { roomId: string }) => {
 				content: data.input,
 				sender_id: `${session?.user.id}`,
 			});
+			toast.success('Sent')
 			reset();
 			setTyping(false);
 		} catch (err) {
+			toast.error("Error sending text")
 			throw err;
 		}
 	};

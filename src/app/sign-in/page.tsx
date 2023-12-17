@@ -37,9 +37,6 @@ const SignIn = () => {
 		handleSubmit,
 		formState: { errors, isSubmitting },
 	} = useForm<SignInValues>({
-		defaultValues: {
-			email: "",
-		},
 		resolver: yupResolver(SignInSchema),
 	});
 
@@ -56,20 +53,22 @@ const SignIn = () => {
 	const onSubmit: SubmitHandler<SignInValues> = async (values) => {
 		try {
 			const { ok, error }: any = await signIn("credentials", {
-				redirect: true,
+				redirect: false,
 				...values,
 			});
-			console.log(ok, error);
 
 			if (ok) {
 				callbackUrl
 					? router.replace(callbackUrl as string)
 					: await router.push("/chats");
+				toast.success("Sign-in successful");
 			}
-			
-		} catch (err) {
+			if (error) {
+				toast.error(error);
+			}
+		} catch (error) {
 			toast.error("Error signing in");
-			console.error("Sign-in error: ", err);
+			console.error(error);
 		}
 	};
 

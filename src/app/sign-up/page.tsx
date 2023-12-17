@@ -55,8 +55,10 @@ const SignUp = () => {
 				toast.error(error.message);
 				return;
 			}
-
-			toast.error("Error creating account. Please try again.");
+			if (error) {
+	
+}
+			toast.error("Username or email already exists");
 			console.error(error);
 		} finally {
 			reset(values, {
@@ -73,9 +75,9 @@ const SignUp = () => {
 				<h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
 					Create account
 				</h2>
-				<h2 className="mt-2 px-2 text-center text-base leading-9 tracking-tight text-gray-900">
+				{/* <h2 className="mt-2 px-2 text-center text-base leading-9 tracking-tight text-gray-900">
 					Welcome to the world of gist
-				</h2>
+				</h2> */}
 			</div>
 
 			<div className="sm:mx-auto sm:w-full sm:max-w-[580px]">
@@ -111,10 +113,14 @@ const SignUp = () => {
 
 						<div className="col-span-full">
 							<div className="flex items-center">
-								<input
+								<Input
 									className="h-4 w-4 rounded-lg border-gray-300 text-purple-600 focus:ring-purple-600"
 									id="termsCondition"
 									type="checkbox"
+									error={
+										errors.termsCondition
+											?.message
+									}
 									{...register("termsCondition")}
 								/>
 								<label

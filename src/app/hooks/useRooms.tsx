@@ -12,6 +12,7 @@ type GetRooms = {
 }
 export const useRooms = (uuid: string) => {
 	const fetchRoomPath = `/user/rooms/${uuid}`
+    const recallTime = uuid ? 2000 : false;
 
     const {
 		data: getRooms,
@@ -20,7 +21,7 @@ export const useRooms = (uuid: string) => {
 	} = useQuery<GetRooms[]>({
 		queryKey: [fetchRoomPath],
 		queryFn: () => get(fetchRoomPath),
-		refetchInterval: 3000,
+		refetchInterval: recallTime,
 	});
     
     const { mutateAsync: addUserToRoom } = useMutation<
