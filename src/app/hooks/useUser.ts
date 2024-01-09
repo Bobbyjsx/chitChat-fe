@@ -22,14 +22,36 @@ export const useUser = () => {
 	} = useApiCache<UserProps>(`/user/${email}`);
 
 	if (session && error instanceof FetchError) {
-		toast.error(error.message);
-		if (error.status === 404) {
+		if (error.status === 401) {
 			signOut();
-			toast.success("You have been signed out")
+			toast.error("You are not logged in");
+			toast.success("You have been signed out");
 			if (window !== undefined) {
-				window.location.href = "/sign-in"
+				window.location.href = "/sign-in";
 			}
 		}
+		if (error.status === 403) {
+			signOut();
+			toast.error("You are not authorized");
+			toast.success("You have been signed out");
+			if (window !== undefined) {
+				window.location.href = "/sign-in";
+			}
+		}
+		if (error.status === 404) {
+			signOut();
+			toast.error("User not found");
+			toast.success("You have been signed out");
+			if (window !== undefined) {
+				window.location.href = "/sign-in";
+			}
+		}
+		toast.error(error.message);
+		toast.success("You have been signed out");
+		if (window !== undefined) {
+			window.location.href = "/sign-in";
+		}
+		
 	}
 	
 	return {

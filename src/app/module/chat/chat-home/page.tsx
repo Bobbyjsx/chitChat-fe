@@ -11,7 +11,7 @@ const ChatHomeModule = () => {
 		session?.user.id
 	);
 
-	const { data: userData } = useUser();
+	const { userData: userData } = useUser();
 	console.log(userData);
 	
 	if (getRoomsIsLoading) {

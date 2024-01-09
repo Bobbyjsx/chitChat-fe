@@ -17,13 +17,21 @@ const ChatRoomModule = () => {
 	const { session } = useUser();
     const uuid = session?.user.id;
 
-	const formatTime = (timeString: string) => {
+  const formatTime = (timeString: string) => {
 		const date = new Date(timeString);
+
+		// Get the local time zone offset in minutes
+		const timeZoneOffset = date.getTimezoneOffset();
+
+		// Adjust the date by adding the time zone offset
+		date.setMinutes(date.getMinutes() - timeZoneOffset);
+
 		const hours = date.getHours().toString().padStart(2, "0");
-        const minutes = date.getMinutes().toString().padStart(2, "0");
-        const correctedHours = hours + 1
-		return `${correctedHours}:${minutes}`;
-	};
+		const minutes = date.getMinutes().toString().padStart(2, "0");
+
+		return `${hours}:${minutes}`;
+  };
+
 	if (fetchingMessages) {
 		toast.custom(
 			<p className="!bg-yellow-50 !py-4 pr-10 text-sm inline-flex rounded-md px-4 !text-green-900 font-semibold">
@@ -83,14 +91,14 @@ const ChatRoomModule = () => {
 								className={classNames(
 									"bg-slate-700 text-gray-100 max-w-[200px] min-h-[40px] p-2 rounded-lg my-2 flex flex-col"
 								)}>
+								<p className="text-xs text-indigo-500 flex-col flex items-start justify-center">
+									{message.username}
+								</p>
 								<p className="break-all">
 									{message.content}
 								</p>
-								<p className="text-xs text-gray-500 flex-col flex items-end justify-center">
+								<p className="text-[11px] text-gray-500 flex-col flex items-end justify-center">
 									{formatTime(message.time)}
-								</p>
-								<p className="text-xs text-gray-500 flex-col flex items-end justify-center">
-                                    { message.username }
 								</p>
 							</div>
 						</div>
