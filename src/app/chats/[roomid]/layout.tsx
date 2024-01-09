@@ -17,14 +17,14 @@ export default function Layout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html
+		<main
 			lang="en"
 			className=" bg-slate-700">
-			<body className={inter.className}>
+			<section className={inter.className}>
 				<ChatRoomContext>
 					<Provider>{children}</Provider>
 				</ChatRoomContext>
-			</body>
-		</html>
+			</section>
+		</main>
 	);
 }

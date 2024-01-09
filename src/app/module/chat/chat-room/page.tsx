@@ -1,10 +1,8 @@
 "use client";
 import { MessageInput } from "@/app/components/MessageInput";
 import { LoadingSpinner } from "@/app/components/common/LoadingSpinner";
-import { useApiCache } from "@/app/hooks/useApiCache";
 import { useMessage } from "@/app/hooks/useMessage";
 import { useUser } from "@/app/hooks/useUser";
-import { get } from "@/app/lib/api";
 import classNames from "classnames";
 import { useParams } from "next/navigation";
 import toast from "react-hot-toast";
@@ -15,9 +13,9 @@ const ChatRoomModule = () => {
 		`${params?.roomid}`
 	);
 	const { session } = useUser();
-    const uuid = session?.user.id;
+	const uuid = session?.user.id;
 
-  const formatTime = (timeString: string) => {
+	const formatTime = (timeString: string) => {
 		const date = new Date(timeString);
 
 		// Get the local time zone offset in minutes
@@ -30,7 +28,7 @@ const ChatRoomModule = () => {
 		const minutes = date.getMinutes().toString().padStart(2, "0");
 
 		return `${hours}:${minutes}`;
-  };
+	};
 
 	if (fetchingMessages) {
 		toast.custom(
@@ -121,4 +119,3 @@ const ChatRoomModule = () => {
 };
 
 export default ChatRoomModule;
-
