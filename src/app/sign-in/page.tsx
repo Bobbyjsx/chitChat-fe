@@ -52,20 +52,27 @@ const SignIn = () => {
         redirect: false,
         ...values,
       });
-
+console.log("okay-callback:", ok, callbackUrl)
       if (ok) {
         callbackUrl
           ? router.replace(callbackUrl as string)
-          : await router.push("/chats");
+          :  router.push("/chats");
         toast.success("Sign-in successful");
       }
       if (error) {
+        console.log("auth errors:", error)
+
         // return error
         const errorMessage = JSON.parse(error);
-        //
-        throw new Error(errorMessage?.detail || "Error signing in");
+        if (typeof errorMessage !== "string") {
+            throw new Error(errorMessage?.detail || "Error signing in");
+        } else {
+            throw new Error("Error signing in");
+        }
+
       }
     } catch (error: any) {
+      console.log("auth error:", error)
       toast.error(error.message);
     }
   };
