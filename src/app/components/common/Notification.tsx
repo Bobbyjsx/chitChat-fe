@@ -1,6 +1,6 @@
-import React from 'react';
-import toast, { ToastBar, Toaster } from 'react-hot-toast';
-import { XMarkIcon } from '@heroicons/react/20/solid';
+import React from "react";
+import toast, { ToastBar, Toaster } from "react-hot-toast";
+import { XMarkIcon } from "@heroicons/react/20/solid";
 
 export const Notifications = () => {
   return (
@@ -8,10 +8,10 @@ export const Notifications = () => {
       position="top-right"
       toastOptions={{
         error: {
-          className: '!bg-red-50 !py-4 !text-red-900 font-semibold',
+          className: "!bg-red-50 !py-4 !text-red-900 font-semibold",
         },
         success: {
-          className: '!bg-green-50 !py-4 !text-green-900 font-semibold',
+          className: "!bg-green-50 !py-4 !text-green-900 font-semibold",
         },
       }}
     >
@@ -21,7 +21,7 @@ export const Notifications = () => {
             <>
               {/* {icon} */}
               <span className="pr-10 text-sm">{message}</span>
-              {t.type !== 'loading' && (
+              {t.type !== "loading" && (
                 <button
                   className="inline-flex rounded-md "
                   onClick={() => {

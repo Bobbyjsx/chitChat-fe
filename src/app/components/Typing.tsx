@@ -1,13 +1,8 @@
-
 interface Props {
-    typing: boolean;
+  typing: boolean;
 }
-const Typing = ({typing}: Props) => {
-  return (
-    <div>
-      {!typing ? <p>Done</p> : <p>Typing...</p>}
-    </div>
-  )
-}
+const Typing = ({ typing }: Props) => {
+  return <div>{!typing ? <p>Done</p> : <p>Typing...</p>}</div>;
+};
 
-export default Typing
+export default Typing;

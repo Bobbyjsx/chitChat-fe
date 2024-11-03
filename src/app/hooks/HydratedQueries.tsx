@@ -1,31 +1,29 @@
 import {
-	dehydrate,
-	HydrationBoundary,
-	QueryClient,
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
 } from "@tanstack/react-query";
 
 type HydratedProps = {
-	fetchFn: () => any;
-	fetchKey: string;
-	children: React.ReactNode;
+  fetchFn: () => any;
+  fetchKey: string;
+  children: React.ReactNode;
 };
 export default async function HydratedPosts({
-	fetchFn,
-	fetchKey,
-	children,
+  fetchFn,
+  fetchKey,
+  children,
 }: HydratedProps) {
-    const queryClient = new QueryClient();
-    
-	await queryClient.prefetchQuery({
-		queryKey: [fetchKey],
-		queryFn: fetchFn,
-    });
-    
-	const dehydratedState = dehydrate(queryClient);
+  const queryClient = new QueryClient();
 
-	return (
-		<HydrationBoundary state={dehydratedState}>
-			{children}
-		</HydrationBoundary>
-	);
+  await queryClient.prefetchQuery({
+    queryKey: [fetchKey],
+    queryFn: fetchFn,
+  });
+
+  const dehydratedState = dehydrate(queryClient);
+
+  return (
+    <HydrationBoundary state={dehydratedState}>{children}</HydrationBoundary>
+  );
 }

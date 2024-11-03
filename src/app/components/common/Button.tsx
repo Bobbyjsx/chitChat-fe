@@ -1,26 +1,27 @@
-import { ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
-import { cva, VariantProps } from 'class-variance-authority';
-import classNames from 'classnames';
+import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
+import { cva, VariantProps } from "class-variance-authority";
+import classNames from "classnames";
 
-import { LoadingSpinner } from './LoadingSpinner';
+import { LoadingSpinner } from "./LoadingSpinner";
 
 const buttonStyles = cva(
-  'flex justify-center rounded-md disabled:opacity-50 disabled:pointer-events-none px-3 py-1.5 text-sm font-medium leading-6 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2',
+  "flex justify-center rounded-md disabled:opacity-50 disabled:pointer-events-none px-3 py-1.5 text-sm font-medium leading-6 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2",
   {
     defaultVariants: {
-      intent: 'primary',
+      intent: "primary",
     },
     variants: {
       intent: {
         neutral:
-          'border border-purple-600 bg-white text-gray-900  focus-visible:outline-purple-600',
+          "border border-purple-600 bg-white text-gray-900  focus-visible:outline-purple-600",
         primary:
-          'bg-yellow-500 text-gray-900 hover:bg-yellow-600 focus-visible:outline-yellow-600',
+          "bg-yellow-500 text-gray-900 hover:bg-yellow-600 focus-visible:outline-yellow-600",
         secondary:
-          'bg-purple-600 text-white hover:bg-purple-500 focus-visible:outline-purple-600',
+          "bg-purple-600 text-white hover:bg-purple-500 focus-visible:outline-purple-600",
+          subtle: "bg-purple-400/30 hover:bg-purple-500/30 focus-visible:outline-purple-600/40"
       },
     },
-  }
+  },
 );
 
 type ButtonProps = DetailedHTMLProps<

@@ -1,8 +1,8 @@
-"use client"
-import { forwardRef, useState } from 'react';
-import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
+"use client";
+import { forwardRef, useState } from "react";
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 
-import { Input, InputProps } from './Input';
+import { Input, InputProps } from "./Input";
 
 export const PasswordInput = forwardRef<HTMLInputElement, InputProps>(
   ({ ...props }: InputProps, ref) => {
@@ -23,12 +23,12 @@ export const PasswordInput = forwardRef<HTMLInputElement, InputProps>(
             />
           )
         }
-        type={passwordVisible ? 'text' : 'password'}
+        type={passwordVisible ? "text" : "password"}
         {...props}
         ref={ref}
       />
     );
-  }
+  },
 );
 
-PasswordInput.displayName = 'PasswordInput';
+PasswordInput.displayName = "PasswordInput";

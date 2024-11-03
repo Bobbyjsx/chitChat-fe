@@ -8,31 +8,30 @@ import { get } from "../lib/api";
  * should prefer to consume API responses through other hooks.
  */
 export const useApiCache = <T>(
-	path: string,
-	// accessToken?: string
+  path: string,
+  // accessToken?: string
 ) => {
-	const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
 
-	// const authenticatedFetcher = useCallback(
-	// 	() => getWithToken<T>(path, accessToken),
-	// 	[path, accessToken]
-	// );
+  // const authenticatedFetcher = useCallback(
+  // 	() => getWithToken<T>(path, accessToken),
+  // 	[path, accessToken]
+  // );
 
-	const fetcher = useCallback(() => get<T>(path), [path]);
+  const fetcher = useCallback(() => get<T>(path), [path]);
 
-	const { data, error, isLoading } = useQuery({
-		queryKey: [path],
-		queryFn: fetcher,
-		
-	});
+  const { data, error, isLoading } = useQuery({
+    queryKey: [path],
+    queryFn: fetcher,
+  });
 
-	const refresh = useCallback(() => {
-		queryClient.invalidateQueries({ queryKey: [path] });
-	}, [queryClient, path]);
+  const refresh = useCallback(() => {
+    queryClient.invalidateQueries({ queryKey: [path] });
+  }, [queryClient, path]);
 
-	// if (data === undefined) {
-	//   throw Error('data undefined but suspense is enabled');
-	// }
+  // if (data === undefined) {
+  //   throw Error('data undefined but suspense is enabled');
+  // }
 
-	return { data, error, isLoading, refresh };
+  return { data, error, isLoading, refresh };
 };

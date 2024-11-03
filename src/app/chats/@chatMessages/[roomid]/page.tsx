@@ -1,7 +1,7 @@
 import ChatRoomModule from "@/app/module/chat/chat-room/page";
 
 const ChatRoom = ({ params }: { params: { roomid: string } }) => {
-	return <ChatRoomModule />;
+  return <ChatRoomModule />;
 };
 
 export default ChatRoom;
