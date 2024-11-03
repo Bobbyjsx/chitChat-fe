@@ -1,3 +1,1 @@
-export function getRoomName() {
-    
-}
+export function getRoomName() {}
